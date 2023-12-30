@@ -8,11 +8,18 @@ export async function GET(req){
 
     const {searchParams} = new URL(req.url)
 
-    const code = searchParams.get('code')
+    const code = searchParams.get('code');
 
-    if (code){
-        await supabase.auth.exchangeCodeForSession(code)
+    if (code) {
+        // Attempt to exchange the code for a session
+        const { error } = await supabase.auth.exchangeCodeForSession(code);
+    
+        if (error) {
+            // Throw an error if the code exchange fails
+            throw new Error("Code exchange failed: " + error.message);
+        }
     }
-
-    return NextResponse.redirect(new URL('/watch-list', req.url))
+    
+    // Redirect to '/rounds' after successful code exchange
+    return NextResponse.redirect(new URL('/rounds', req.url));   
 }

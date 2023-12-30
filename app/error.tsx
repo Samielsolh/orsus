@@ -1,22 +1,19 @@
 "use client"
 
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router'; // Import useRouter
+import { useRouter } from 'next/router';
 
 type ErrorProps = {
     error: Error;
 };
 
 const ErrorPage: React.FC<ErrorProps> = ({ error }) => {
-    const router = useRouter(); // Initialize useRouter
-
     useEffect(() => {
-        // Log the error to an error reporting service
         console.error(error);
     }, [error]);
 
-    // Function to handle the reset action
     const handleReset = () => {
+        const router = useRouter(); // Initialize useRouter within the function
         router.push('/'); // Navigate to the root page
     };
 
