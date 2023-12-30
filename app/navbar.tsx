@@ -4,12 +4,12 @@ import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
 import { supabase } from '../utils/supabase-client'; // Adjusted import path
+import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon} from './icons';
 
 const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Playground', href: '/playground' }
+  { name: 'Dashboard', href: '/dashboard' },
+  { name: 'Rounds', href: '/rounds' }
 ];
 
 function classNames(...classes: string[]) {
@@ -58,13 +58,7 @@ export default function Navbar({ user }: { user: any }) {
                     <div>
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
                         <span className="sr-only">Open user menu</span>
-                        <Image
-                          className="h-8 w-8 rounded-full"
-                          src={user?.image || 'https://avatar.vercel.sh/leerob'}
-                          height={32}
-                          width={32}
-                          alt={`${user?.name || 'placeholder'} avatar`}
-                        />
+                        <DollarSignIcon className="rainbow-icon h-6 w-6" />
                       </Menu.Button>
                     </div>
                     <Transition
@@ -79,15 +73,15 @@ export default function Navbar({ user }: { user: any }) {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <button
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'flex w-full px-4 py-2 text-sm text-gray-700'
-                              )}
-                              onClick={handleSignOut}
-                            >
-                              Sign out
-                            </button>
+                            <form action="/auth/signout" method="post">
+                              <button
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'flex w-full px-4 py-2 text-sm text-gray-700'
+                                )}>
+                                Sign out
+                              </button>
+                            </form>
                           )}
                         </Menu.Item>
                       </Menu.Items>
@@ -125,13 +119,7 @@ export default function Navbar({ user }: { user: any }) {
                 <>
                   <div className="flex items-center px-4">
                     <div className="flex-shrink-0">
-                      <Image
-                        className="h-8 w-8 rounded-full"
-                        src={user.image}
-                        height={32}
-                        width={32}
-                        alt={`${user.name} avatar`}
-                      />
+                      <RainbowIcon className="rainbow-icon h-6 w-6" />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">
@@ -143,12 +131,13 @@ export default function Navbar({ user }: { user: any }) {
                     </div>
                   </div>
                   <div className="mt-3 space-y-1">
-                    <button
-                      onClick={handleSignOut}
-                      className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                    >
-                      Sign out
-                    </button>
+                    <form action="/auth/signout" method="post">
+                      <button
+                        className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                      >
+                        Sign out
+                      </button>
+                    </form>
                   </div>
                 </>
               )}

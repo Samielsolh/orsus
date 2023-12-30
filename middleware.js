@@ -1,9 +1,8 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
-import { NextResponse, NextRequest } from 'next/server';
-import { NextMiddleware, NextMiddlewareResult } from 'next/dist/server/web/types';
+import { NextResponse } from 'next/server';
 
 // Exporting an asynchronous middleware function that will be called with the request object.
-export const middleware: NextMiddleware = async (req: NextRequest): Promise<NextMiddlewareResult | NextResponse> => {
+export async function middleware(req) {
     // Creating a Next.js response object.
     const res = NextResponse.next();
     // Initializing a Supabase client for the middleware, passing in the request and response objects.
@@ -12,7 +11,7 @@ export const middleware: NextMiddleware = async (req: NextRequest): Promise<Next
     // Using the Supabase client to get the current user based on the request.
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Redirecting authenticated users trying to access the home page ('/') to the '/dashboard' page.
+    // Redirecting authenticated users trying to access the home page ('/') to the '/rounds' page.
     if (user && req.nextUrl.pathname === '/') {
         return NextResponse.redirect(new URL('/rounds', req.url));
     }
@@ -30,6 +29,3 @@ export const middleware: NextMiddleware = async (req: NextRequest): Promise<Next
 export const config = {
     matcher: ['/', '/rounds']
 };
-
-
-

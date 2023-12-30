@@ -15,7 +15,7 @@ const AuthForm: React.FC = () => {
             view="magic_link"
             showLinks={false}
             providers={[]}
-            redirectTo='http://local:3000/auth/callback'
+            redirectTo='http://localhost:3000/auth/callback'
             appearance={{ theme: ThemeSupa }}
         />
     );

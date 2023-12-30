@@ -10,4 +10,5 @@ export async function Nav() {
   const {data: {session}} = await supabase.auth.getSession();
 
   return <Navbar user={session?.user} />;
+  
 }

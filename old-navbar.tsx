@@ -1,6 +1,6 @@
 import React from 'react'
 import '../globals.css'
-import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon} from '../icons';
+import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon} from './app/icons';
 import Link from "next/link"
 
 

@@ -1,19 +1,8 @@
-// pages/hero.tsx
-
-import React, { useState } from 'react';
-import Popup from "./components/ui/popup";
-import AuthForm from "./components/ui/auth-form"; // Make sure this path is correct
+import React from 'react';
+import Link from 'next/link';
 import './globals.css';
 
-const HeroSSR: React.FC = () => {
-  const learnMoreContent = (
-    <p className="text-lg md:text-xl font-bold text-gray-500 mb-6">
-      S.E.S built this application as a side project to consolidate multiple newsletters using a ML classifier.
-      <br /><br />
-      Investors can use the integrated Open AI chatbot to track, filter, and interact with all deals in an efficient manner.
-    </p>
-  );
-
+const Hero: React.FC = () => {
   return (
     <section 
       className="w-full h-screen animate-gradient-x"
@@ -28,14 +17,22 @@ const HeroSSR: React.FC = () => {
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
             ai-powered startup deal tracker
           </h1>
-
           <p className="text-lg md:text-xl font-extrabold text-white mb-6">
             <em>track, interact, and save venture capital and private equity deals</em>
           </p>
+          <div className="flex space-x-4 justify-center">
+            <Link href="/login">
+              <button
+                className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-gray-900 shadow transition-colors hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
+                Accept Invite
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default HeroSSR;
+export default Hero;
