@@ -5,11 +5,17 @@ import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { supabase } from '../utils/supabase-client'; // Adjusted import path
-import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon} from './icons';
+import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon, SunIcon, MoonIcon} from './icons';
+import { useState, useEffect } from 'react';
+
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Rounds', href: '/rounds' }
+  { name: 'For You', href: '/for-you' },
+  { name: 'Rounds', href: '/rounds' },
+  { name: 'AI', href: '/ai' },
+  { name: 'Test', href: '/test' },
+
 ];
 
 function classNames(...classes: string[]) {
@@ -17,11 +23,20 @@ function classNames(...classes: string[]) {
 }
 
 export default function Navbar({ user }: { user: any }) {
+  const [darkMode, setDarkMode] = useState(false);
   const pathname = usePathname();
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    window.location.href = '/'; // Redirect to root path after sign out
+  useEffect(() => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDarkMode);
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode.toString());
+    document.documentElement.classList.toggle('dark', newDarkMode);
   };
 
   return (
@@ -53,6 +68,10 @@ export default function Navbar({ user }: { user: any }) {
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                {/* Dark Mode Toggle Button */}
+                <button onClick={toggleDarkMode} className="mr-4">
+                  {darkMode ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
+                </button>
                 {user && (
                   <Menu as="div" className="relative ml-3">
                     <div>
@@ -148,3 +167,4 @@ export default function Navbar({ user }: { user: any }) {
     </Disclosure>
   );
 }
+

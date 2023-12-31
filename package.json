@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+    "@nextui-org/react": "^2.2.9",
     "@react-three/fiber": "^8.15.12",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/auth-ui-react": "^0.4.6",
