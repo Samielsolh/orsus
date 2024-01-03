@@ -8,6 +8,7 @@ import { supabase } from '../utils/supabase-client'; // Adjusted import path
 import { DollarSignIcon, HomeIcon, PlusIcon, RainbowIcon, DatabaseIcon, SunIcon, MoonIcon} from './icons';
 import { useState, useEffect } from 'react';
 
+// maybe better to use: https://nextui.org/docs/components/navbar?
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard' },
@@ -47,7 +48,7 @@ export default function Navbar({ user }: { user: any }) {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  {/* ... SVG logo code remains unchanged */}
+                  <RainbowIcon className="h-6 w-6" /> 
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item) => (
@@ -72,7 +73,7 @@ export default function Navbar({ user }: { user: any }) {
                 <button onClick={toggleDarkMode} className="mr-4">
                   {darkMode ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
                 </button>
-                {user && (
+                {( //user && ( is original one
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">

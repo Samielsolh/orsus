@@ -23,6 +23,7 @@ export async function middleware(req) {
     }
 }
 // Configuring the middleware to run on specific routes - the home page ('/') and the '/watch-list' page.
+//   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 export const config = {
     matcher: ['/', '/rounds']
 };

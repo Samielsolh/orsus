@@ -21,3 +21,39 @@
     background-position: 0% 50%;
   }
 }
+
+.hover-row:hover {
+  background-color: #e1e1e1; /* change to your preferred color */
+}
+.hover-row:hover > :first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.hover-row:hover > :last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.float-in {
+  opacity: 0; /* Initially hidden */
+  transform: translateY(50px); /* Start from 50px down */
+  animation: floatIn 1s ease-out forwards;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.float-in-delayed {
+  opacity: 0; /* Initially hidden */
+  transform: translateY(50px); /* Start from 50px down */
+  animation: floatIn 1s ease-out 0.5s forwards; /* Add delay here */
+}
