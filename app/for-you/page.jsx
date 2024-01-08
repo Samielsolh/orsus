@@ -20,14 +20,10 @@ import {
 } from "@nextui-org/react";
 import {VerticalDotsIcon} from "../icons/vertical-dots-icon";
 import {SearchIcon} from "../icons/search-icon";
-import {ChevronDownIcon} from "./ChevronDownIcon";
-import {columns, users, statusOptions} from "../for-you/data";
+import {ChevronDownIcon} from "../icons/chevron-down-icon";
+import {columns, users, statusOptions} from "./data";
 import Navbar from '../navbar'; // Adjust the path as needed
-import { Auth } from '@supabase/auth-ui-react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { getData } from '../server-actions/get-data'; // Adjust the import path as needed
-
-
 
 const statusColorMap = {
   active: "success",

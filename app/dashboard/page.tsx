@@ -1,21 +1,32 @@
-import React from 'react'
+"use client"
 import '../globals.css'
-import { Nav } from '../nav';
+import Navbar from '../navbar';
 import FundingTable from '../components/ui/table'
+import React, { useState, useEffect } from 'react';
+import { getCompanyTitles } from '../server-actions/get-titles';
 
-export default function Dashboard() {
+
+const TitlesPage: React.FC = () => {
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    const fetchTitles = async () => {
+      const fetchedTitles = await getCompanyTitles();
+      setTitles(fetchedTitles);
+    };
+
+    fetchTitles();
+  }, []);
+
   return (
     <div>
-      <div className="fixed top-0 left-0 right-0 z-10 bg-white shadow-md">
-        <Nav />
+      <Navbar user={undefined} />
+      <div className="titles-page-container p-4">
+        <h1>Company Titles</h1>
+        <pre>{JSON.stringify(titles, null, 2)}</pre>
       </div>
-      <main className="mt-16 p-4 md:p-10 mx-auto max-w-7xl">
-        {/* Add top padding equal to the height of the Nav */}
-        <h1>Users</h1>
-        <h1>A list of users retrieved from a Postgres database.</h1>
-        <br />
-        <FundingTable />
-      </main>
     </div>
   );
-}
+};
+
+export default TitlesPage;

@@ -28,3 +28,5 @@ const AuthForm: React.FC = () => {
 }
 
 export default AuthForm;
+
+// Edit https://supabase.com/dashboard/project/eiabvttxbcckmqmoeibm/auth/templates to change the magiclink template

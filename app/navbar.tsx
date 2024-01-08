@@ -15,6 +15,7 @@ const navigation = [
   { name: 'For You', href: '/for-you' },
   { name: 'Rounds', href: '/rounds' },
   { name: 'AI', href: '/ai' },
+  { name: 'Outreach', href: '/outreach' },
   { name: 'Test', href: '/test' },
 
 ];
