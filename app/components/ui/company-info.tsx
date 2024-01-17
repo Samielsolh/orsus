@@ -4,8 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { getCompanyTitles } from '../../server-actions/get-titles'; // Update the import path
 
+interface Company {
+  label: any;
+  value: any;
+}
+
 const CompanyInfo: React.FC = () => {
-  const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
 
   useEffect(() => {
     const fetchCompanies = async () => {

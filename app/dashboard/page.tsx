@@ -5,9 +5,13 @@ import FundingTable from '../components/ui/table'
 import React, { useState, useEffect } from 'react';
 import { getCompanyTitles } from '../server-actions/get-titles';
 
+interface Title {
+  label: any;
+  value: any;
+}
 
 const TitlesPage: React.FC = () => {
-  const [titles, setTitles] = useState([]);
+  const [titles, setTitles] = useState<Title[]>([]);
 
   useEffect(() => {
     const fetchTitles = async () => {

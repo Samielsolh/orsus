@@ -7,7 +7,7 @@ export default function HomeNavbar({ setShowAuthPopup }: { setShowAuthPopup: (va
     const [showLearnMorePopup, setShowLearnMorePopup] = useState<boolean>(false);
     const learnMoreContent = (
         <p className="text-lg md:text-xl text-gray-500 mb-6">
-          S.E.S built FundIn as a side project to improve the efficiency of sourcing and tracking deals for investors. 
+          S.E.S built Funding.Live as a side project to improve the efficiency of sourcing and tracking deals for investors. 
         <br /><br />
           Reach out to me on <a href="https://www.linkedin.com/in/samielsolh/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">Linkedin</a> if you have any questions or feedback!
         </p>
@@ -18,7 +18,7 @@ export default function HomeNavbar({ setShowAuthPopup }: { setShowAuthPopup: (va
         <Navbar>
         <NavbarBrand>
             <RainbowIcon />
-            <p className="font-bold text-inherit">FundIn</p>
+            <p className="font-bold text-inherit">Funding.Live</p>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
             <Dropdown>
