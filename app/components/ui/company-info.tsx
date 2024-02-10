@@ -1,25 +1,17 @@
 // CompanyInfo.tsx
 
 import React, { useState, useEffect } from 'react';
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from '@nextui-org/react';
 import { getCompanyTitles } from '../../server-actions/get-titles'; // Update the import path
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Company {
-  label: any;
-  value: any;
+  startup_name: any;
+  _id: any;
 }
 
 const CompanyInfo: React.FC = () => {
-  const [companies, setCompanies] = useState<Company[]>([]);
-
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      const fetchedCompanies = await getCompanyTitles();
-      setCompanies(fetchedCompanies);
-    };
-
-    fetchCompanies();
-  }, []);
+  const { selectedRaise, setSelectedRaise, companies } = useAuth();
 
   return (
     <div className="company-info-container bg-white shadow-lg rounded-lg p-4">
@@ -27,10 +19,15 @@ const CompanyInfo: React.FC = () => {
         label="Select a Company"
         placeholder="Search for a company"
         className="max-w-xs"
-        onChange={(value) => console.log(value)} // Replace with your handle change logic
+        selectedKey={selectedRaise}
+        onSelectionChange={(value) => {
+          setSelectedRaise(value);
+        }}
       >
-        {companies.map((company) => (
-          <AutocompleteItem key={company.value}>{company.label}</AutocompleteItem>
+        {companies?.map((company: any) => (
+          <AutocompleteItem key={company._id} value={company._id}>
+            {company.startup_name}
+          </AutocompleteItem>
         ))}
       </Autocomplete>
       {/* Additional elements like company description and competitive edge can be added here */}
